@@ -1,4 +1,4 @@
-﻿#Finally I can search for Elon's son's name in google
+﻿#v1
 function Get-UnicodeCharacter {
     [CmdletBinding()]
     param (
@@ -21,24 +21,9 @@ function Get-UnicodeCharacter {
         }
     }
 }
+#END
 
-#example script usage
-Get-UnicodeCharacter -Start 0x19 -End 0x80
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#this one does the unicode search in reverse too
+#v2
 function Get-UnicodeCharacter {
     [CmdletBinding()]
     param (
@@ -67,11 +52,11 @@ function Get-UnicodeCharacter {
         }
     }
 }
-
-Get-UnicodeCharacter -char ⣎
-Write-Host 
-$OutputEncoding
-
+#A few examples used for testing
+#Get-UnicodeCharacter -char ⣎
+#Write-Host 
+#$OutputEncoding
+#END
 
 #v3
 function Get-UnicodeCharacter {
@@ -104,9 +89,9 @@ function Get-UnicodeCharacter {
         }
     }
 }
+#END
 
-#v4
-
+#v4 (2 functions)
 function Get-UnicodeCharacter {
     param (
         [string]$Char,
@@ -129,7 +114,7 @@ function Get-UnicodeCharacter {
     }
 }
 
-#subfunction that does some stuff that makes my brain wrinkle
+#subfunction that modifies variables the other function depends on
 function Get-CharInfo {
     param (
         [char]$Char
@@ -141,5 +126,9 @@ function Get-CharInfo {
     $charInfo = Invoke-Expression("`"" + 'echo ' + $escapedString + ' ^| Format-Hex' + "`"")
     $charInfo -replace '\s{2,}', ' ' | ConvertFrom-Csv -Delimiter ' ' -Header 'Offset','Bytes','Ascii','Hex','Description'
 }
+#END
 
+#example script usage 1
 Get-UnicodeCharacter -Char ⣎
+#example script usage 2
+Get-UnicodeCharacter -Start 0x19 -End 0x80

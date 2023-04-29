@@ -130,5 +130,5 @@ function Get-CharInfo {
 
 #example script usage 1
 Get-UnicodeCharacter -Char ⣎
-#example script usage 2
+#example script usage 2, only works reliably with V1
 Get-UnicodeCharacter -Start 0x19 -End 0x80
